@@ -38,7 +38,12 @@ static int nums_cmp(char* av1, char* av2)
         i++;
     if (av2[j] == '+')
         j++;
-    while (av1[i] != '\0' && av2[j] != '\0' && av1[i] == av2[j]) {
+    while (av1[i] == '0')
+        i++;
+    while (av2[j] == '0')
+        j++;
+    while (av1[i] != '\0' && av2[j] != '\0' && av1[i] == av2[j]) 
+    {
         i++;
         j++;
     }
@@ -66,27 +71,41 @@ static int check_double(char **av)
     return 1;
 }
 
-char* arg_join(char** av) {
+static int check_zeros (char *av)
+{
+    int i = 0;
+    if (is_sign(av[i]))
+        i++;
+    while (av[i] && av[i] == '0')
+        i++;
+    if (av[i])
+        return 0;
+    return 1;
+}
+
+char* arg_join(int ac, char** av) 
+{
     int i = 1;
-    char *result = malloc(1);
+    size_t total_len = 0;
+
+    for (i = 1; i < ac; i++) {
+        total_len += strlen(av[i]) + 1;
+    }
+
+    char *result = malloc(total_len + 1);
+    if (!result)
+        return NULL;
+
     result[0] = '\0';
 
-    while (av[i] != NULL) 
-    {
-        size_t result_len = strlen(result);
-        size_t av_len = strlen(av[i]);
-        char *new_result = malloc(result_len + av_len + 1);
-        strcpy(new_result, result);
-        strcat(new_result, av[i]);
-        strcat(new_result, " ");
-        free(result);
-        result = new_result;
-        i++;
+    for (i = 1; i < ac; i++) {
+        strcat(result, av[i]);
+        strcat(result, " ");
     }
+
     return result;
 }
 
-// Function to count the number of words in the input string
 static size_t count_words(char const *s, char sep) {
     size_t count = 0;
     int in_word = 0;
@@ -103,7 +122,6 @@ static size_t count_words(char const *s, char sep) {
     return count;
 }
 
-// Function to allocate memory for each word
 static char *allocate(char const **s, char sep) {
     char *word;
     int i = 0;
@@ -124,14 +142,14 @@ static char *allocate(char const **s, char sep) {
     return word;
 }
 
-// Function to free the allocated memory if an error occurs
-static void free_split(char **splitted, size_t n) {
-    for (size_t i = 0; i < n; i++)
-        free(splitted[i]);
+void free_split(char **splitted) 
+{
+    int i = 0;
+    while (splitted[i])
+        free(splitted[i++]);
     free(splitted);
 }
 
-// Main function to split the input string based on the separator
 char **ft_split(char const *s, char sep) 
 {
     if (!s)
@@ -148,7 +166,7 @@ char **ft_split(char const *s, char sep)
     while (i < words) {
         splitted[i] = allocate(&s, sep);
         if (!splitted[i]) {
-            free_split(splitted, i);
+            free_split(splitted);
             return NULL;
         }
         i++;
@@ -157,18 +175,22 @@ char **ft_split(char const *s, char sep)
     return splitted;
 }
 
-// int main(int ac , char **av) 
-// {
-// 	int i = 0;
-//     char *joined = arg_join(av);
-//     char **splitted = ft_split(joined, ' ');
-// 	if (!check_double(splitted))
-// 		printf ("error");
-// 	else  
-// 		printf ("dayza");
-//     free(joined);
-// 	free (splitted);
+int correct_input (char **av)
+{
+    int i = 1;
+    int zeros = 0;
 
-//     return 0;
-// }
+    while (av[i])
+    {
+        if (!(is_number(av[i])))
+            return 0;
+        zeros += check_zeros(av[i]);
+        i++;
+    }
+    if (zeros > 1)
+        return 0;
+    if (!(check_double(av)))
+        return 0;
+    return 1;
+}
 

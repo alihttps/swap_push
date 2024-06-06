@@ -25,18 +25,20 @@ void init_stack_a (t_stack **a, char **av)
 {
     long n;
     int i;
-
+	t_stack *new;
     i = 0;
     while (av[i])
     {
-        // if (error_syntax(av[i]))
-        //     free_error(a);
         n = ft_atol(av[i]);
-        // if (n > INT_MAX || n < INT_MIN)
-        //     free_error(a);
-        // if (error_duplicate(*a, (int)n))
-        //     free_error(a);
-        add_bottom(a, n);
+        if (n > INT_MAX || n < INT_MIN)
+		{
+            free_stack(a);
+			ft_putstr("error");
+		}
+		if (i == 0)
+			*a = create_node(n);
+		else
+        	add_bottom(a, create_node(n));
         i++;
     }
 }

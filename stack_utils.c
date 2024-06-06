@@ -56,25 +56,19 @@ t_stack *get_before_tail (t_stack *stack)
     return stack;
 }
 
-void add_bottom(t_stack **stack, int n)
+void add_bottom(t_stack **stack, t_stack *new)
 {
-    t_stack *new_node;
-    t_stack *tail;
+    t_stack	*tail;
 
-    if (!stack)
-        return;
-    new_node = malloc (sizeof (t_stack));
-    if (!new_node)
-        return;
-    new_node->next = NULL;
-    new_node->data = n;
-    if(!(*stack))
-    {
-        *stack = new_node;
-        return;
-    }
-    tail = get_tail(*stack);
-    tail->next = new_node;
+	if (!new)
+		return ;
+	if (!*stack)
+	{
+		*stack = new;
+		return ;
+	}
+	tail = get_tail(*stack);
+	tail->next = new;
 }
 
 void free_stack (t_stack **stack)

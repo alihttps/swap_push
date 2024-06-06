@@ -24,7 +24,8 @@ void ft_putstr(char *str);
 int	get_stack_size(t_stack	*stack);
 t_stack *get_tail (t_stack *stack);
 t_stack *get_before_tail (t_stack *stack);
-void add_bottom(t_stack **stack, int n);
+t_stack *create_node(int value);
+void add_bottom(t_stack **stack, t_stack *new);
 long	ft_atol(const char *s);
 void init_stack_a (t_stack **a, char **av);
 bool stack_sorted(t_stack *stack);
@@ -62,8 +63,10 @@ void set_target_b(t_stack *a, t_stack *b);
 void min_on_top (t_stack **a);
 void sort_stack(t_stack **a, t_stack **b);
 char **ft_split(char const *s, char sep);
+char* arg_join(int ac, char** av);
+int correct_input (char **av);
 void free_stack (t_stack **stack);
-
+void free_split(char **splitted);
 
 
 int is_digit(int av);
