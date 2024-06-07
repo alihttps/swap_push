@@ -6,7 +6,7 @@
 /*   By: aait-bou <aait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:16:34 by aait-bou          #+#    #+#             */
-/*   Updated: 2024/06/07 21:51:33 by aait-bou         ###   ########.fr       */
+/*   Updated: 2024/06/07 22:56:22 by aait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	init_stack_a(t_stack **a, char **av)
 {
 	long	n;
 	int		i;
-	t_stack	*new;
 
 	i = 0;
 	while (av[i])
