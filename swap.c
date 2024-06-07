@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aait-bou <aait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/07 21:17:38 by aait-bou          #+#    #+#             */
+/*   Updated: 2024/06/07 22:08:27 by aait-bou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	swap(t_stack **stack)
@@ -13,21 +25,21 @@ void	swap(t_stack **stack)
 	}
 }
 
-void sa(t_stack **a)
+void	sa(t_stack **a)
 {
-    swap(a);
-    ft_putstr ("sa\n");
+	swap(a);
+	ft_putstr("sa\n");
 }
 
-void sb(t_stack **b)
+void	sb(t_stack **b)
 {
-    swap(b);
-    ft_putstr ("sb\n");
+	swap(b);
+	ft_putstr("sb\n");
 }
 
-void ss(t_stack **a, t_stack **b)
+void	ss(t_stack **a, t_stack **b)
 {
-    swap(a);
-    swap(b);
-    ft_putstr("ss\n");
+	swap(a);
+	swap(b);
+	ft_putstr("ss\n");
 }

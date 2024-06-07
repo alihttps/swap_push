@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-bou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aait-bou <aait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 21:38:36 by aait-bou          #+#    #+#             */
-/*   Updated: 2024/05/24 21:38:42 by aait-bou         ###   ########.fr       */
+/*   Updated: 2024/06/07 21:35:55 by aait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	push(t_stack **dest, t_stack **source)
 	}
 }
 
-void pa(t_stack **a, t_stack **b)
+void	pa(t_stack **a, t_stack **b)
 {
-    push (a, b);
-    ft_putstr ("pa\n");
+	push(a, b);
+	ft_putstr("pa\n");
 }
 
-void pb(t_stack **b, t_stack **a)
+void	pb(t_stack **b, t_stack **a)
 {
-    push (b, a);
-    ft_putstr ("pb\n");
+	push(b, a);
+	ft_putstr("pb\n");
 }

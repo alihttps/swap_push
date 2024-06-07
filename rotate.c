@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aait-bou <aait-bou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/07 21:17:14 by aait-bou          #+#    #+#             */
+/*   Updated: 2024/06/07 22:02:51 by aait-bou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	rotate(t_stack **stack)
@@ -17,29 +29,31 @@ void	rotate(t_stack **stack)
 	}
 }
 
-void ra(t_stack **a)
+void	ra(t_stack **a)
 {
-    rotate (a);
-    ft_putstr("ra\n");
-}
-void rb(t_stack **b)
-{
-    rotate (b);
-    ft_putstr("rb\n");
-}
-void rr(t_stack **a, t_stack **b)
-{
-    rotate (a);
-    rotate (b);
-    ft_putstr("rr\n");
+	rotate(a);
+	ft_putstr("ra\n");
 }
 
-void rotate_both (t_stack **a, t_stack **b, t_stack *cheapest_node)
+void	rb(t_stack **b)
 {
-    while (*a != cheapest_node && *b != cheapest_node->target)
-    {
-        rr(a, b);
-    }
-    current_index(*a);
-    current_index(*b);
+	rotate(b);
+	ft_putstr("rb\n");
+}
+
+void	rr(t_stack **a, t_stack **b)
+{
+	rotate(a);
+	rotate(b);
+	ft_putstr("rr\n");
+}
+
+void	rotate_both(t_stack **a, t_stack **b, t_stack *cheapest_node)
+{
+	while (*a != cheapest_node && *b != cheapest_node->target)
+	{
+		rr(a, b);
+	}
+	current_index(*a);
+	current_index(*b);
 }
