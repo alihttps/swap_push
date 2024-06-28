@@ -23,7 +23,7 @@ NAME = push_swap
 all : $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) -g3 -fsanitize=address $(CFLAGS) $(OBJS) -o  $(NAME)
 	@echo "Compilation done."
 
 clean:

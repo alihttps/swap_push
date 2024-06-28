@@ -6,7 +6,7 @@
 /*   By: aait-bou <aait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 21:38:36 by aait-bou          #+#    #+#             */
-/*   Updated: 2024/06/07 21:35:55 by aait-bou         ###   ########.fr       */
+/*   Updated: 2024/06/28 21:42:06 by aait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	push(t_stack **dest, t_stack **source)
 {
+	
 	t_stack	*tmp;
 
 	if (*source)
