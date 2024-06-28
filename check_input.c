@@ -6,7 +6,7 @@
 /*   By: aait-bou <aait-bou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 21:23:20 by aait-bou          #+#    #+#             */
-/*   Updated: 2024/06/07 21:50:39 by aait-bou         ###   ########.fr       */
+/*   Updated: 2024/06/28 22:19:10 by aait-bou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,52 @@ static int	check_zeros(char *av)
 		return (0);
 	return (1);
 }
+static size_t	calculate_total_length(int ac, char **av)
+{
+	size_t	len;
+	int		i;
+
+	len = 0;
+	i = 1;
+	while (i < ac)
+	{
+		len += ft_strlen(av[i]) + 1;
+		i++;
+	}
+	return (len);
+}
+
+static char	*join_arguments(int ac, char **av, size_t len)
+{
+	char	*joined;
+	char	*ptr;
+	int		i;
+	size_t	arg_len;
+
+	joined = (char *)malloc(len + 1);
+	if (!joined)
+		return (NULL);
+	ptr = joined;
+	i = 1;
+	while (i < ac)
+	{
+		arg_len = ft_strlen(av[i]);
+		ft_memcpy(ptr, av[i], arg_len);
+		ptr += arg_len;
+		*ptr = ' ';
+		ptr++;
+		i++;
+	}
+	*(ptr - 1) = '\0';
+	return (joined);
+}
 
 char	*arg_join(int ac, char **av)
 {
-	int		i;
-	size_t	total_len;
-	char	*result;
+	size_t	len;
 
-	i = 1;
-	total_len = 0;
-	while (i < ac)
-	{
-		total_len += strlen(av[i]) + 1;
-		i++;
-	}
-	result = malloc(total_len + 1);
-	if (!result)
-		return (NULL);
-	result[0] = '\0';
-	i = 1;
-	while (i < ac)
-	{
-		strcat(result, av[i]);
-		strcat(result, " ");
-		i++;
-	}
-	return (result);
+	len = calculate_total_length(ac, av);
+	return (join_arguments(ac, av, len));
 }
 
 int	correct_input(char **av)
@@ -78,7 +98,7 @@ int	correct_input(char **av)
 	int	i;
 	int	zeros;
 
-	i = 1;
+	i = 0;
 	zeros = 0;
 	while (av[i])
 	{
